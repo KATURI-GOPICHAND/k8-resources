@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  nginx: nginx
+  name: nginx
 spec: 
   containter: 
   - name: nginx

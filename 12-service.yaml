@@ -4,6 +4,7 @@ metadata:
   name: nginx
 spec:
   selector: 
+    # labels are used as selectors
     project: roboshop
     component: frontend
     environment: dev

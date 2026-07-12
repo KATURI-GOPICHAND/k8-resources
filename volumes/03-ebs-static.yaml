@@ -1,29 +1,29 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: ebs
+  name: ebs-static
 spec:
   accessModes:
   - ReadWriteOnce
   capacity:
-    storage: 5Gi       # should be less than or equal to your disk size
+    storage: 2Gi       # should be less than or equal to your disk size
   csi:
     driver: ebs.csi.aws.com
     fsType: ext4
-    volumeHandle: vol-0a94a0ec6a7fa706c
+    volumeHandle: vol-0ef8922d42bc38590
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: ebs
+  name: ebs-static
 spec:
   storageClassName: "" # Empty string must be explicitly set otherwise default StorageClass will be set
-  volumeName: ebs    # This is PV name
+  volumeName: ebs-static    # This is PV name
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 5Gi
+      storage: 2Gi
 ---
 apiVersion: v1
 kind: Pod
@@ -41,4 +41,4 @@ spec:
   volumes:
   - name: html-data
     persistentVolumeClaim:
-      claimName: ebs
+      claimName: ebs-static

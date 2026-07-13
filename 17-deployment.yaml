@@ -11,7 +11,7 @@ metadata:
   annotations: 
     kubernetes.io/change-cause: "moving to 1.29.7"
 spec:
-  replicas: 2
+  replicas: 4
   selector: 
   # using these labels replica set selects the pod
     matchLabels:
@@ -32,4 +32,17 @@ spec:
       containers:
       - name: nginx
         image: nginx:latest
-
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+spec:
+  selector: 
+    # labels are used as selectors
+    project: roboshop
+    component: frontend
+  ports:
+  - protocol: TCP
+    port: 80  # service port
+    targetPort: 80 # container port
